@@ -1,14 +1,30 @@
 {
   "name": "mean-music",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Personal Hobby Project Music",
+  "main": "application.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-frontend":"cd ./public/ui && npm start",
+    "start-backend":"nodemon --inspect",
+    "start":"start-frontend | start-backend"
   },
-  "author": "",
+  "author": "Muhammad Irfan Khan",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.2"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "ignore": [
+      "public/*"
+    ],
+    "delay": "3",
+    "signal": "SIGHUP",
+    "env": {
+      "NODE_ENV": "development"
+    }
   }
 }
