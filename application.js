@@ -2,6 +2,7 @@ require("dotenv").config();
 
 require("./api/processOn");
 require("./api/database/connection");
+require("./api/database/schema");
 
 const router = require("./api/routes");
 

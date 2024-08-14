@@ -16,6 +16,6 @@ const artistSchema = mongoose.Schema({
   albumList: [albumSchema],
 });
 
-const Artist = mongoose.model("Artist", artistSchema, "artists");
+const Artist = mongoose.model("ARTIST", artistSchema, "artists");
 
 module.exports = { Artist, artistSchema };

@@ -1,0 +1,2 @@
+require("./AlbumSchema");
+require("./ArtistSchema");
