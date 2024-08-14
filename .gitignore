@@ -1,3 +1,6 @@
 # Dependency directories
 node_modules/
+
+# UI cache directories
 /public/UI/.vscode
+/public/ui/.angular
