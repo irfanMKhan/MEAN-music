@@ -13,8 +13,8 @@ const getAllByPagination = (request, response, next) => {
     data: "",
   };
 
-  if (request.query && request.query.offset) offset = request.query.offset;
-  if (request.query && request.query.limit) limit = request.query.limit;
+  if (request.query && request.query.offset) offset = parseInt(request.query.offset, conversionBase);
+  if (request.query && request.query.limit) limit = parseInt(request.query.limit, conversionBase);
 
   Album.find().skip(offset).limit(limit).sort({ title: 1 }).exec()
       .then((albums) => setResponse(responseObject, process.env.HTTP_STATUS_OK, albums))
@@ -35,4 +35,21 @@ const getById = (request, response, next) => {
       .finally(() => sendResponse(response, responseObject));
 };
 
-module.exports = { getAll: getAllByPagination, getOne: getById };
+const saveAlbum = (request, response, next) => {
+  const newAlbumData = request.body;
+  let responseObject = {
+    status: 200,
+    data: "",
+  };
+
+  new Album(newAlbumData).save()
+    .then((savedAlbum) => setResponse(responseObject, process.env.HTTP_STATUS_OK, savedAlbum))
+    .catch((error) => setResponse(responseObject, process.env.HTTP_STATUS_INTERNAL_SERVER_ERROR, error))
+    .finally(() => sendResponse(response, responseObject));
+};
+
+module.exports = {
+  getAll: getAllByPagination,
+  getOne: getById,
+  save: saveAlbum,
+};
