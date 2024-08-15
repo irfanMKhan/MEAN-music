@@ -8,6 +8,10 @@ router.route("")
       .get(musicController.getAll)
       .post(musicController.save);
 
-router.route("/:id").get(musicController.getOne);
+router.route("/:id")
+      .get(musicController.getOne)
+      .patch(musicController.patch)
+      .put(musicController.update)
+      .delete(musicController.delete);
 
 module.exports = router;

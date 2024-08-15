@@ -35,15 +35,53 @@ const getById = (request, response, next) => {
       .finally(() => sendResponse(response, responseObject));
 };
 
-const saveAlbum = (request, response, next) => {
+const save = (request, response, next) => {
   const newAlbumData = request.body;
+  let responseObject = {
+    status: 200,
+    data: "",
+  };  
+
+  new Album(newAlbumData).save()
+    .then((savedData) => setResponse(responseObject, process.env.HTTP_STATUS_OK, savedData))
+    .catch((error) => setResponse(responseObject, process.env.HTTP_STATUS_INTERNAL_SERVER_ERROR, error))
+    .finally(() => sendResponse(response, responseObject));
+};
+
+const update = (request, response, next) => {
+  const albumId = request.params.id;
+  const updatedAlbumData = request.body;
   let responseObject = {
     status: 200,
     data: "",
   };
 
-  new Album(newAlbumData).save()
-    .then((savedAlbum) => setResponse(responseObject, process.env.HTTP_STATUS_OK, savedAlbum))
+  Album.findByIdAndUpdate(albumId, updatedAlbumData).exec()
+    .then((updatedData) => setResponse(responseObject, process.env.HTTP_STATUS_OK, updatedData))
+    .catch((error) => setResponse(responseObject, process.env.HTTP_STATUS_INTERNAL_SERVER_ERROR, error))
+    .finally(() => sendResponse(response, responseObject));
+};
+
+const replace = (request, response, next) => {
+  const albumId = request.params.id;
+  const updatedAlbumData = request.body;
+  let responseObject = {
+    status: 200,
+    data: "",
+  };
+
+  Album.findById(albumId).exec()
+    .then((queriedData)=> Album.findOneAndReplace(queriedData, updatedAlbumData))  
+    .then((updatedData) => setResponse(responseObject, process.env.HTTP_STATUS_OK, updatedData))  
+    .catch((error) => setResponse(responseObject, process.env.HTTP_STATUS_INTERNAL_SERVER_ERROR, error))
+    .finally(() => sendResponse(response, responseObject));   
+};
+
+const remove = (request, response, next) => {
+  const id = request.params.id;
+
+  Album.findByIdAndDelete(albumId).exec()
+    .then((data) => setResponse(responseObject, process.env.HTTP_STATUS_OK, data))
     .catch((error) => setResponse(responseObject, process.env.HTTP_STATUS_INTERNAL_SERVER_ERROR, error))
     .finally(() => sendResponse(response, responseObject));
 };
@@ -51,5 +89,8 @@ const saveAlbum = (request, response, next) => {
 module.exports = {
   getAll: getAllByPagination,
   getOne: getById,
-  save: saveAlbum,
+  save: save,
+  patch: update,
+  update: replace,
+  delete: remove,
 };

@@ -9,6 +9,7 @@ const router = require("./api/routes");
 const express = require("express");
 
 const application = express();
+application.use(express.json());
 
 application.use(process.env.BASE_URI + process.env.API_SUBSET_ROUTE, router);
 
