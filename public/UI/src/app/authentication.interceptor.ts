@@ -9,7 +9,7 @@ export const authenticationInterceptor: HttpInterceptorFn = (request, next) => {
     return next(
       request.clone({
         setHeaders: {
-          authorization: `Bearer` + service.getToken(),
+          authorization: `Bearer ` + service.getToken(),
         },
       })
     );

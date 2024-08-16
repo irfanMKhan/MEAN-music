@@ -102,7 +102,7 @@ const validateToken = (request, response, next) => {
     response.status(process.env.HTTP_STATUS_UNAUTHORISED).json(process.env.MESSAGE_TOKEN_MISSING);
   } else {
     try {
-      const isValid = jwt.verify(authorizationHeader, process.env.TOKEN_PRIVATE_KEY);
+      const isValid = jwt.verify(authorizationHeader.split(" ")[1], process.env.TOKEN_PRIVATE_KEY);
       if (isValid) {
         next();
       } else {

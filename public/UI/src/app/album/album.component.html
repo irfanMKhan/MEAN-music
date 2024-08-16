@@ -1,4 +1,4 @@
-<form (ngSubmit)="register(registrationForm)" #registrationForm="ngForm">
+<form (ngSubmit)="update(albumForm)" #albumForm="ngForm">
     <div>
       <label>Title: 
         <input name="title" id="title" placeholder="Title" [(ngModel)]="album.title"/>
@@ -9,8 +9,8 @@
         <input name="releasedYear" id="releasedYear" placeholder="Released Year" [(ngModel)]="album.releasedYear"/>
       </label>
     </div>
-    <button type="submit">Register</button>    
-    <button type="button" class="bg-red-500" (click)="onBack()">Delete</button>
+    <button type="submit">Update</button>    
+    <button *ngIf="isLoggedIn" type="button" class="bg-red-500" (click)="deleteData()">Delete</button>
     <button type="button" (click)="onBack()">back</button>
   </form>
 
