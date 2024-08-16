@@ -1,7 +1,6 @@
 const _setResponse = (responseObject, status, data) => {
   responseObject.status = status;
   responseObject.data = data;
-  console.log(responseObject);
 };
 
 const _sendResponse = (response, object) => {

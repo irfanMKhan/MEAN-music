@@ -1,0 +1,9 @@
+<div>
+  <ul>
+    <li *ngFor="let album of albums">
+      <a routerLink="/album/{{ album._id }}">{{ album.title }}</a>
+    </li>
+  </ul>
+  <button (click)="onChange(-1)" [disabled]="pageNumber === 1 ? true : false"> previous </button>
+  <button (click)="onChange(1)">next</button>
+</div>

@@ -1,0 +1,6 @@
+<span *ngIf="isLogin">
+  <button routerLink="search">Register</button>
+  <button routerLink="search">Login</button>
+</span>
+
+<button *ngIf="!isLogin" routerLink="search">Logout</button>
