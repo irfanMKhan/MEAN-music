@@ -26,6 +26,8 @@ const register = (request, response, next) => {
     age: request.body.age,
     createdOn: Date.now(),
   };   
+  console.log(newUser);
+  
 
   /**
    * NOTE : schema validation do not catch.

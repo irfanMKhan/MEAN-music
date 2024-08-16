@@ -1,6 +1,101 @@
-<span *ngIf="isLogin">
-  <button routerLink="search">Register</button>
-  <button routerLink="search">Login</button>
+<span *ngIf="doLogin">
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+    <span>
+      <label>
+        Username:
+        <input
+          name="username"
+          id="username"
+          placeholder="Username"
+          formControlName="username"
+        />
+      </label>
+    </span>
+    <span>
+      <label>
+        Password:
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </label>
+    </span>
+    <button type="submit">Login</button>
+  </form>
 </span>
 
-<button *ngIf="!isLogin" routerLink="search">Logout</button>
+<span *ngIf="doRegister">
+  <form [formGroup]="registrationForm" (ngSubmit)="registration(registrationForm)">
+    <span>
+      <label>
+        name:
+        <input
+          name="name"
+          id="name"
+          placeholder="name"
+          formControlName="name"
+        />
+      </label>
+    </span>
+    <span>
+      <label>
+        Username:
+        <input
+          name="username"
+          id="username_r"
+          placeholder="Username"
+          formControlName="username"
+        />
+      </label>
+    </span>
+    <span>
+      <label>
+        Password:
+        <input
+          type="password"
+          name="password_r"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </label>
+    </span>
+    <span>
+      <label>
+        Password:
+        <input
+          type="password"
+          name="repeatPassword"
+          id="repeatPassword"
+          placeholder="Repeat Password"
+          formControlName="repeatPassword"
+        />
+      </label>
+    </span>
+    <span>
+      <label>
+        age:
+        <input
+          name="age"
+          id="age"
+          placeholder="age"
+          formControlName="age"
+        />
+      </label>
+    </span>
+    <button type="submit">Register</button>
+  </form>
+</span>
+
+<span *ngIf="!isLogin && !doRegister && !doLogin">
+  <button (click)="clickRegister()">Register</button>
+  <button (click)="clickLogin()">Login</button>
+</span>
+
+<span *ngIf="isLogin">
+  Welcome
+  <button (click)="clickLogout()">Logout</button>
+</span>
