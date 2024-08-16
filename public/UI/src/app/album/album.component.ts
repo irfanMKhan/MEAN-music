@@ -1,6 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 
 import { AlbumDataService } from '../album-data.service';
@@ -9,7 +9,7 @@ import { AuthenticationService } from '../authentication.service';
 @Component({
   selector: 'app-album',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './album.component.html',
   styleUrl: './album.component.css',
 })
@@ -21,7 +21,8 @@ export class AlbumComponent implements OnInit {
     private location: Location,
     private dataService: AlbumDataService,
     private route: ActivatedRoute,
-    private _authentication: AuthenticationService
+    private _authentication: AuthenticationService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +34,6 @@ export class AlbumComponent implements OnInit {
   getData(id: string): void {
     this.dataService.getById(id).subscribe((data) => {
       this.album = data;
-      console.log(data);
     });
   }
 
@@ -41,6 +41,7 @@ export class AlbumComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.dataService.update(formValue, id).subscribe((data) => {
       this.album = data;
+      this._router.navigate(['album']);
     });
   }
 
@@ -48,6 +49,7 @@ export class AlbumComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.dataService.delete(id).subscribe((data) => {
       this.album = data;
+      this._router.navigate(['album']);
     });
   }
 

@@ -1,5 +1,4 @@
-<button *ngIf="isLoggedIn" type="button" class="bg-blue-300" routerLink="/add-album">Add</button>
-<form (ngSubmit)="update(albumForm)" #albumForm="ngForm">
+<form (ngSubmit)="add(albumForm)" #albumForm="ngForm">
   <div>
     <label>Title: 
       <input name="title" id="title" placeholder="Title" [(ngModel)]="album.title"/>
@@ -10,8 +9,6 @@
       <input name="releasedYear" id="releasedYear" placeholder="Released Year" [(ngModel)]="album.releasedYear"/>
     </label>
   </div>  
-  <button type="submit">Update</button>    
-  <button *ngIf="isLoggedIn" type="button" class="bg-red-500" (click)="deleteData()">Delete</button>
+  <button type="submit">Add</button>    
   <button type="button" (click)="onBack()">back</button>
 </form>
-

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _service: AuthenticationService
+    private _service: AuthenticationService,
+    private _router: Router
   ) {}
+
   ngOnInit(): void {
     this.isLogin = this._service.hasToken();
     this.loginForm = this._formBuilder.group({
@@ -43,12 +46,16 @@ export class LoginComponent implements OnInit {
       this.doLogin = false;
       this.isLogin = true;
       this.doRegister = false;
+
+      this._router.navigate(['home']);
     });
   }
 
   registration(form: FormGroup) {
     this._service.registration(form.value).subscribe((response) => {
-      this.doRegister = false;
+      this.doRegister = false;   
+
+      this._router.navigate(['home']);
     });
   }
 
@@ -65,5 +72,7 @@ export class LoginComponent implements OnInit {
     this.doLogin = false;
     this.isLogin = false;
     this.doRegister = false;
+    
+    this._router.navigate(['home']);
   }
 }

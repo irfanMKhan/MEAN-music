@@ -22,6 +22,11 @@ export class AlbumDataService {
     return this.httpClient.get<any>(url);
   }
 
+  public add(albumObject: any): Observable<any> {
+    const apiUrl = this.baseURL;
+    return this.httpClient.post(apiUrl, albumObject);
+  }
+
   public update(albumObject: any, id: string): Observable<any> {
     const apiUrl = this.baseURL + '/' + id;
     return this.httpClient.patch(apiUrl, albumObject);
