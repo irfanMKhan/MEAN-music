@@ -9,4 +9,6 @@ export const environment = {
   pageNumber: 1,
   limit: 5,
   localStoreageTokenKey: 'token',
+  navigateToHome: 'home',
+  navigateToAlbum: 'album',
 };

@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
+
+import { AuthenticationService } from '../authentication.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -47,7 +49,7 @@ export class LoginComponent implements OnInit {
       this.isLogin = true;
       this.doRegister = false;
 
-      this._router.navigate(['home']);
+      this._router.navigate([environment.navigateToHome]);
     });
   }
 
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit {
     this._service.registration(form.value).subscribe((response) => {
       this.doRegister = false;   
 
-      this._router.navigate(['home']);
+      this._router.navigate([environment.navigateToHome]);
     });
   }
 
@@ -73,6 +75,6 @@ export class LoginComponent implements OnInit {
     this.isLogin = false;
     this.doRegister = false;
     
-    this._router.navigate(['home']);
+    this._router.navigate([environment.navigateToHome]);
   }
 }

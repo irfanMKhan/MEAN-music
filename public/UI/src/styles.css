@@ -10,4 +10,10 @@
   input {
     @apply text-gray-800 font-semibold py-1 px-2 m-2 border border-gray-400 rounded shadow;
   }
+  ul {
+    @apply list-disc list-inside m-4;
+  }
+  a {
+    @apply underline decoration-blue-500 text-blue-500;
+  }
 }

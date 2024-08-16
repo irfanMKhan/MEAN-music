@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AlbumDataService } from '../album-data.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-add-album',
@@ -26,7 +27,7 @@ export class AddAlbumComponent implements OnInit {
   insertData(formValue: any): void {
     this.dataService.add(formValue).subscribe((data) => {
       this.album = data;
-      this._router.navigate(['album']);
+      this._router.navigate([environment.navigateToAlbum]);
     });
   }
 

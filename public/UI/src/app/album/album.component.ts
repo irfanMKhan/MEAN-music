@@ -5,6 +5,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 
 import { AlbumDataService } from '../album-data.service';
 import { AuthenticationService } from '../authentication.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-album',
@@ -41,7 +42,7 @@ export class AlbumComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.dataService.update(formValue, id).subscribe((data) => {
       this.album = data;
-      this._router.navigate(['album']);
+      this._router.navigate([environment.navigateToAlbum]);
     });
   }
 
@@ -49,7 +50,7 @@ export class AlbumComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.dataService.delete(id).subscribe((data) => {
       this.album = data;
-      this._router.navigate(['album']);
+      this._router.navigate([environment.navigateToAlbum]);
     });
   }
 
