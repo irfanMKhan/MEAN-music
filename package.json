@@ -4,13 +4,14 @@
   "description": "Personal Hobby Project Music",
   "main": "application.js",
   "scripts": {
-    "start-frontend":"cd ./public/ui && npm start",
-    "start-backend":"nodemon --inspect",
-    "start":"start-frontend | start-backend"
+    "start-frontend": "cd ./public/ui && npm start",
+    "start-backend": "nodemon --inspect",
+    "start": "start-frontend | start-backend"
   },
   "author": "Muhammad Irfan Khan",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",

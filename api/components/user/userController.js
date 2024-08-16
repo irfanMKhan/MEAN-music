@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const User = mongoose.model(process.env.USER_MODEL);
+const User = mongoose.model(process.env.MONGOOSE_MODEL_USER);
 
 const _setResponseForServerError = (response, message) => {
   response.status = 500;

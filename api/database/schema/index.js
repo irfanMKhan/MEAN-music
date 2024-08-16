@@ -1,2 +1,3 @@
-require("./AlbumSchema");
-require("./ArtistSchema");
+require("./Album");
+require("./Artist");
+require("./User");

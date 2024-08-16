@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const { setResponse, sendResponse } = require("../../../util");
 
-const Album = mongoose.model("ALBUM");
+const Album = mongoose.model(process.env.MONGOOSE_MODEL_ALBUM);
 const conversionBase = process.env.CONVERSION_BASE;
 
 const getAllByPagination = (request, response, next) => {
