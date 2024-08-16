@@ -9,11 +9,12 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  password: {
+  passwordHash: {
     type: String,
     required: true,
   },
   age: Number,
+  createdOn: Date,
 });
 
 const User = mongoose.model(process.env.MONGOOSE_MODEL_USER, userSchema, process.env.MONGOOSE_COLLECTION_USER);

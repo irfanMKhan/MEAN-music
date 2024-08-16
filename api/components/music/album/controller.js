@@ -8,7 +8,7 @@ const conversionBase = process.env.CONVERSION_BASE;
 const getAllByPagination = (request, response, next) => {
   let offset = 0;
   let limit = 5;
-  let responseObject = {
+  const responseObject = {
     status: 200,
     data: "",
   };
@@ -24,7 +24,7 @@ const getAllByPagination = (request, response, next) => {
 
 const getById = (request, response, next) => {
   const id = request.params.id;
-  let responseObject = {
+  const responseObject = {
     status: 200,
     data: "",
   };
@@ -37,7 +37,7 @@ const getById = (request, response, next) => {
 
 const save = (request, response, next) => {
   const newAlbumData = request.body;
-  let responseObject = {
+  const responseObject = {
     status: 200,
     data: "",
   };  
@@ -51,7 +51,7 @@ const save = (request, response, next) => {
 const update = (request, response, next) => {
   const albumId = request.params.id;
   const updatedAlbumData = request.body;
-  let responseObject = {
+  const responseObject = {
     status: 200,
     data: "",
   };
@@ -65,7 +65,7 @@ const update = (request, response, next) => {
 const replace = (request, response, next) => {
   const albumId = request.params.id;
   const updatedAlbumData = request.body;
-  let responseObject = {
+  const responseObject = {
     status: 200,
     data: "",
   };
@@ -79,8 +79,12 @@ const replace = (request, response, next) => {
 
 const remove = (request, response, next) => {
   const id = request.params.id;
+  const responseObject = {
+    status: 200,
+    data: "",
+  };
 
-  Album.findByIdAndDelete(albumId).exec()
+  Album.findByIdAndDelete(id).exec()
     .then((data) => setResponse(responseObject, process.env.HTTP_STATUS_OK, data))
     .catch((error) => setResponse(responseObject, process.env.HTTP_STATUS_INTERNAL_SERVER_ERROR, error))
     .finally(() => sendResponse(response, responseObject));
